@@ -1,0 +1,13 @@
+groups:
+- name: 'Alerts regarding GC'
+  rules:
+  - alert: 'Too much GC'
+    expr: go_gc_duration_seconds_count{job="prometheus-job"} > 10
+    for: 1m
+    labels:
+      severity: low
+      type: gc
+    annotations:
+      summary: 'There have been {{$value}} gcs in {{$labels.instance}}'
+      description: 'This is just for testing purposes'
+      dashboard: 'https://grafana/awsome-dashboard'
