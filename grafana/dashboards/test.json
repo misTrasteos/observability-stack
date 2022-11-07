@@ -140,7 +140,5 @@
     ]
   },
   "timezone": "browser",
-  "title": "Test",
-  "uid": null,
-  "version": 0
+  "title": "Test"
 }
