@@ -42,3 +42,27 @@ export GF_SECURITY_ADMIN_USER=owner
 export GF_AUTH_GOOGLE_CLIENT_SECRET=newS3cretKey
 export GF_PLUGIN_GRAFANA_IMAGE_RENDERER_RENDERING_IGNORE_HTTPS_ERRORS=true
 ```
+
+## Alertmanager
+### amtool
+* [amtool](https://github.com/prometheus/alertmanager#amtool)
+* [amtool Debian man pages](https://manpages.debian.org/unstable/prometheus-alertmanager/amtool.1.en.html)
+
+#### Examples
+**Find silences**
+
+amtool --alertmanager.url=http://alertmanager silence query environment="DEVELOP" alertname="Something bad is happening"
+ID  Matchers  Ends At  Created By  Comment
+
+
+**Add a silence**
+
+amtool --alertmanager.url=http://alertmanager silence add environment="DEVELOP" alertname="Something bad is happening" --author="me" --duration="1y" --comment="Do not bother me for a long time"
+85369874-6g8h-12c5-abc3-0cajebad8743
+
+
+**Silence has been created**
+
+amtool --alertmanager.url=http://alertmanager silence query environment="DEVELOP" alertname="Something bad is happening"
+ID                                    Matchers                                                Ends At                  Created By                           Comment
+85369874-6g8h-12c5-abc3-0cajebad8743  environment="DEVELOP" alertname="Something bad is happening"  2023-11-07 08:54:03 UTC  me  Do not bother me for a long time
